@@ -23,7 +23,16 @@ async function main() {
     },
   });
 
-  console.log({ user1, user2 });
+  const user3 = await prisma.user.create({
+    data: {
+      email: 'user3@example.com',
+      hash: 'jos8efh498wh4f',
+      firstName: 'Second',
+      lastName: 'User',
+    },
+  });
+
+  console.log({ user1, user2, user3 });
 }
 
 // execute the main function
