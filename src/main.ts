@@ -1,5 +1,7 @@
 import { NestFactory, HttpAdapterHost } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 import {
   FastifyAdapter,
   NestFastifyApplication,
@@ -28,14 +30,27 @@ async function bootstrap() {
   const prismaService = app.get(PrismaService);
   await prismaService.enableShutdownHooks(app);
 
-  const config = new DocumentBuilder()
+  const userOptions = new DocumentBuilder()
     .setTitle('User')
     .setDescription('The user API description')
     .setVersion('1.0')
     .addTag('user')
     .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  const userDocument = SwaggerModule.createDocument(app, userOptions, {
+    include: [UserModule],
+  });
+  SwaggerModule.setup('api/user', app, userDocument);
+
+  const authOptions = new DocumentBuilder()
+    .setTitle('User')
+    .setDescription('The user API description')
+    .setVersion('1.0')
+    .addTag('user')
+    .build();
+  const authDocument = SwaggerModule.createDocument(app, authOptions, {
+    include: [AuthModule],
+  });
+  SwaggerModule.setup('api/auth', app, authDocument);
 
   await app.listen(3100);
 }
