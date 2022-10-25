@@ -38,7 +38,7 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
    */
   constructor(
     applicationRef?: HttpServer,
-    errorCodesStatusMapping: ErrorCodesStatusMapping = null,
+    errorCodesStatusMapping: ErrorCodesStatusMapping = {},
   ) {
     super(applicationRef);
 
