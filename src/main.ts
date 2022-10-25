@@ -9,6 +9,7 @@ import {
 import { ValidationPipe } from '@nestjs/common/pipes';
 import { PrismaClientExceptionFilter } from 'src/common/filters/prisma-client-exception.filter';
 import { PrismaService } from './prisma/prisma.service';
+import helmet from '@fastify/helmet';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
@@ -29,6 +30,17 @@ async function bootstrap() {
   // Prisma gracefull shutdown
   const prismaService = app.get(PrismaService);
   await prismaService.enableShutdownHooks(app);
+
+  app.register(helmet, {
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: [`'self'`],
+        styleSrc: [`'self'`, `'unsafe-inline'`],
+        imgSrc: [`'self'`, 'data:', 'validator.swagger.io'],
+        scriptSrc: [`'self'`, `https: 'unsafe-inline'`],
+      },
+    },
+  });
 
   const userOptions = new DocumentBuilder()
     .setTitle('User')
