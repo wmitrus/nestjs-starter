@@ -1,12 +1,13 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 import {} from 'class-validator';
 
-export class AuthDto {
+export abstract class AuthDto {
   @IsEmail()
   @IsNotEmpty()
-  email: string;
+  email: string | undefined;
 
   @IsString()
   @IsNotEmpty()
-  password: string;
+  @MinLength(8)
+  password: string | undefined;
 }
