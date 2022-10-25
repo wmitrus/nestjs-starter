@@ -26,6 +26,7 @@
     "prisma:seed:test": "dotenv -e .env.test -- prisma db seed"
   },
   "dependencies": {
+    "@fastify/static": "^6.5.0",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.0",
