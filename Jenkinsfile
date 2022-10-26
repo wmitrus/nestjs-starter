@@ -7,15 +7,15 @@ pipeline {
                 sh 'yarn install'
             }
         }
+        stage('prisma') {
+            steps {
+                sh 'npx prisma generate'
+            }
+        }
         stage('build') {
             steps {
                 echo 'Building...'
                 sh 'yarn build'
-            }
-        }
-        stage('prisma') {
-            steps {
-                sh 'npx prisma generate'
             }
         }
         stage('test') {
