@@ -9,7 +9,7 @@ pipeline {
         }
         stage('prisma') {
             steps {
-                sh 'yarn prisma:generate'
+                sh 'npx prisma generate'
             }
         }
         stage('build') {
