@@ -13,6 +13,11 @@ pipeline {
                 sh 'yarn build'
             }
         }
+        stage('prisma') {
+            steps {
+                sh 'npx prisma generate'
+            }
+        }
         stage('test') {
             steps {
                 echo 'Testing...'
