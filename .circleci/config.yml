@@ -9,6 +9,7 @@ jobs:
     parallelism: 10
     steps:
       - checkout
+      - add_ssh_keys
       - node/install-packages:
           pkg-manager: yarn
       - run:
