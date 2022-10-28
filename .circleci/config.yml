@@ -6,6 +6,7 @@ orbs:
 jobs:
   build:
     executor: node/default
+    parallelism: 10
     steps:
       - checkout
       - node/install-packages:
