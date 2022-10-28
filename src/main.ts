@@ -64,6 +64,8 @@ async function bootstrap() {
   });
   SwaggerModule.setup('api/auth', app, authDocument);
 
+  app.enableCors();
+
   await app.listen(3100);
 }
 bootstrap();
