@@ -20,3 +20,7 @@ jobs:
       - run:
           command: yarn build
           name: Build app
+      - run:
+          command: |
+            scp -r dist/* wmitrus@s14.mydevil.net:/home/wmitrus/domains/nestjs.wmitrus.usermd.net/public_nodejs
+          name: Deploy
