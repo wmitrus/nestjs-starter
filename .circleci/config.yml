@@ -1,0 +1,15 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@18.12.0
+
+jobs:
+  build:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          command: yarn test
+          name: Run tests
