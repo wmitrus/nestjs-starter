@@ -27,4 +27,11 @@ jobs:
       - run:
           command: |
             scp -r dist/* wmitrus@s14.mydevil.net:/home/wmitrus/domains/nestjs.wmitrus.usermd.net/public_nodejs
-          name: Deploy
+          name: Deploy to remote server
+      - run:
+          ssh wmitrus@s14.mydevil.net
+            "cd /home/wmitrus/domains/nestjs.wmitrus.usermd.net/public_nodejs;
+            ln -s src/main.js app.js;
+            devil www restart nestjs.wmitrus.usermd.net;
+            "
+
