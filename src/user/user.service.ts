@@ -17,7 +17,19 @@ export class UserService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} user`;
+    return this.prisma.user.findUnique({
+      where: {
+        id: id,
+      },
+    });
+  }
+
+  search(dto: Partial<User>) {
+    return this.prisma.user.findMany({
+      where: {
+        ...dto,
+      },
+    });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
@@ -32,6 +44,10 @@ export class UserService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} user`;
+    return this.prisma.user.delete({
+      where: {
+        id,
+      },
+    });
   }
 }
