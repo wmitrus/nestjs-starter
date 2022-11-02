@@ -11,17 +11,21 @@ import { PrismaClientExceptionFilter } from 'src/common/filters/prisma-client-ex
 import { PrismaService } from './prisma/prisma.service';
 import helmet from '@fastify/helmet';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { Logger } from 'nestjs-pino';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter(),
+    { bufferLogs: true }, // Automatically logs all the HTTP requests coming into your NestJS app
   );
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true, // clear the properties are sent by user but not exist in dto
     }),
   );
+
+  app.useLogger(app.get(Logger));
 
   // Prisma Client Exception Filter for unhandled exceptions
   const { httpAdapter } = app.get(HttpAdapterHost);
