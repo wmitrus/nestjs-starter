@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import * as argon from 'argon2';
 
 // initialize Prisma Client
 const prisma = new PrismaClient();
@@ -8,7 +9,7 @@ async function main() {
   const user1 = await prisma.user.create({
     data: {
       email: 'user1@example.com',
-      hash: 'jos8efh498wh4f',
+      hash: await argon.hash('testing1'),
       firstName: 'First',
       lastName: 'User',
     },
@@ -17,7 +18,7 @@ async function main() {
   const user2 = await prisma.user.create({
     data: {
       email: 'user2@example.com',
-      hash: 'jos8efh498wh4f',
+      hash: await argon.hash('testing2'),
       firstName: 'Second',
       lastName: 'User',
     },
@@ -26,8 +27,8 @@ async function main() {
   const user3 = await prisma.user.create({
     data: {
       email: 'user3@example.com',
-      hash: 'jos8efh498wh4f',
-      firstName: 'Second',
+      hash: await argon.hash('testing3'),
+      firstName: 'Third',
       lastName: 'User',
     },
   });
