@@ -8,10 +8,6 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UserService {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
-  }
-
   findAll() {
     return this.prisma.user.findMany();
   }

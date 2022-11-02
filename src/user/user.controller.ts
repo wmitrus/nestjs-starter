@@ -28,11 +28,6 @@ export class UserController {
     return user;
   }
 
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
-  }
-
   @Get()
   findAll() {
     return this.userService.findAll();
