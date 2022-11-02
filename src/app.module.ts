@@ -13,7 +13,13 @@ import { LoggerModule } from 'nestjs-pino';
       isGlobal: true,
       envFilePath: '.prod.env',
     }),
-    LoggerModule.forRoot(),
+    LoggerModule.forRoot({
+      pinoHttp: {
+        customProps: () => ({
+          context: 'HTTP',
+        }),
+      },
+    }),
     AuthModule,
     UserModule,
     PrismaModule,
