@@ -1,9 +1,13 @@
 import { Injectable } from '@nestjs/common';
+import { User } from '@prisma/client';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
+  constructor(private readonly prisma: PrismaService) {}
+
   create(createUserDto: CreateUserDto) {
     return 'This action adds a new user';
   }
@@ -17,7 +21,14 @@ export class UserService {
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+    return this.prisma.user.update({
+      where: {
+        id: id,
+      },
+      data: {
+        ...updateUserDto,
+      },
+    });
   }
 
   remove(id: number) {
