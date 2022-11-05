@@ -26,12 +26,10 @@ jobs:
           name: Build app
       - run:
           command: |
-            scp -r dist/* wmitrus@s14.mydevil.net:/home/wmitrus/domains/nestjs.wmitrus.usermd.net/public_nodejs
+            scp -r dist/* $DEPLOY_USER@$DEPLOY_SERVER:$DEPLOY_PATH
           name: Deploy to remote server
       - run:
-          ssh wmitrus@s14.mydevil.net
-            "cd /home/wmitrus/domains/nestjs.wmitrus.usermd.net/public_nodejs;
-            ln -s src/main.js app.js;
-            devil www restart nestjs.wmitrus.usermd.net;
+          ssh $DEPLOY_USER@$DEPLOY_SERVER
+            $DEPLOY_RESTART_COMMAND;
             "
 
