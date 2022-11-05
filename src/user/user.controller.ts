@@ -10,9 +10,8 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { JwtGuard } from 'src/auth/guard';
+import { JwtGuard } from '../auth/guard';
 import { User } from '@prisma/client';
 import { GetUser } from '../auth/decorator';
 import { RemovePasswordInterceptor } from './interceptor/RemovePassword.interceptor';
