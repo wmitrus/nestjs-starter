@@ -11,14 +11,28 @@ import { LoggerModule } from 'nestjs-pino';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.prod.env',
     }),
     LoggerModule.forRoot({
-      pinoHttp: {
-        customProps: () => ({
-          context: 'HTTP',
-        }),
-      },
+      pinoHttp:
+        process.env.NODE_ENV === 'development'
+          ? {
+              transport: {
+                target: 'pino-pretty',
+                options: {
+                  colorize: true,
+                },
+              },
+            }
+          : {
+              customProps: () => ({
+                context: 'HTTP',
+              }),
+              formatters: {
+                level(label) {
+                  return { level: label };
+                },
+              },
+            },
     }),
     AuthModule,
     UserModule,
