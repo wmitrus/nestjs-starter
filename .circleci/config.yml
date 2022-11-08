@@ -27,6 +27,9 @@ jobs:
           command: node -v
           name: Show NodeJS version
       - run:
+          command: yarn prisma:generate
+          name: Generates entities
+      - run:
           command: yarn test:ci
           name: Run tests
       - run:
