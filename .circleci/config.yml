@@ -40,6 +40,7 @@ jobs:
           command: |
             ssh $DEPLOY_USER@$DEPLOY_SERVER "
               echo `Prisma fmt: $PRISMA_FMT_BINARY`;
+              echo $PRISMA_QUERY_ENGINE_BINARY
               cd $APP_PATH;
               pwd;
               yarn install;
