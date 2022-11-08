@@ -39,10 +39,12 @@ jobs:
       - run:
           command: |
             ssh $DEPLOY_USER@$DEPLOY_SERVER "
+              echo $PRISMA_FMT_BINARY;
               cd $APP_PATH;
-              yarn install
+              pwd;
+              yarn install;
               git pull origin;
-              ./installDeps.sh
+              ./installDeps.sh;
               $DEPLOY_RESTART_COMMAND;
             ";
           name: Install dependencies
