@@ -5,6 +5,15 @@ orbs:
 
 jobs:
   build:
+    docker:
+      # Service container image
+      - image: cimg/postgres:14.0
+        environment:
+          POSTGRES_USER: $POSTGRES_USER
+        auth:
+          username: mydockerhub-user
+          password: $POSTGRES_PASSWORD
+
     executor: node/default
     parallelism: 10
     steps:
