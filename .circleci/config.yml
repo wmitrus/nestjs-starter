@@ -11,7 +11,7 @@ jobs:
         environment:
           POSTGRES_USER: postgres
         auth:
-          username: $POSTGRES_USER
+          username: mydockerhub-user
           password: $POSTGRES_PASSWORD
 
     executor: node/default
