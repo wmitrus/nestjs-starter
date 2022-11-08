@@ -38,9 +38,7 @@ jobs:
           name: Deploy to remote server
       - run:
           command: |
-            ssh $DEPLOY_USER@$DEPLOY_SERVER
-            "npm install
-            "
+            ssh $DEPLOY_USER@$DEPLOY_SERVER npm install
           name: Install dependencies
       - run:
           ssh $DEPLOY_USER@$DEPLOY_SERVER 
