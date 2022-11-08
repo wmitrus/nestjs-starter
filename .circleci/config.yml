@@ -32,22 +32,23 @@ jobs:
       - run:
           command: yarn build
           name: Build app
-      - run:
-          command: |
-            scp -r dist/* $DEPLOY_USER@$DEPLOY_SERVER:$DEPLOY_PATH
-          name: Deploy to remote server
+      # - run:
+      #     command: |
+      #       scp -r dist/* $DEPLOY_USER@$DEPLOY_SERVER:$DEPLOY_PATH
+      #     name: Deploy to remote server
       - run:
           command: |
             ssh $DEPLOY_USER@$DEPLOY_SERVER "
               cd $APP_PATH;
-              ./installDeps.sh;
+              yarn install
               git pull origin;
+              yarn build
               $DEPLOY_RESTART_COMMAND;
             ";
           name: Install dependencies
-      - run:
-          ssh $DEPLOY_USER@$DEPLOY_SERVER 
-            "$DEPLOY_RESTART_COMMAND;
-            "
+      # - run:
+      #     ssh $DEPLOY_USER@$DEPLOY_SERVER 
+      #       "$DEPLOY_RESTART_COMMAND;
+      #       "
 
 
