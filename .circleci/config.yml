@@ -42,12 +42,6 @@ jobs:
       - run:
           command: |
             ssh $DEPLOY_USER@$DEPLOY_SERVER "
-              export $PRISMA_ENGINE_TYPE;
-              export $PRISMA_CLI_QUERY_TYPE;
-              export $PRISMA_FMT;
-              export $PRISMA_QUERY_LIBRARY;
-              export $PRISMA_QUERY;
-              export $PRISMA_INTROSPECTION;
               cd $APP_PATH;
               yarn install;
               git pull origin;
