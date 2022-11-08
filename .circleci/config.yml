@@ -42,6 +42,7 @@ jobs:
               cd $APP_PATH;
               yarn install
               git pull origin;
+              yarn prisma:generate
               yarn build
               $DEPLOY_RESTART_COMMAND;
             ";
