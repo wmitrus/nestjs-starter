@@ -42,8 +42,7 @@ jobs:
               cd $APP_PATH;
               yarn install
               git pull origin;
-              yarn prisma:generate
-              yarn build
+              ./installDeps.sh
               $DEPLOY_RESTART_COMMAND;
             ";
           name: Install dependencies
