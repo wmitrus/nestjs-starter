@@ -37,7 +37,14 @@ jobs:
             scp -r dist/* $DEPLOY_USER@$DEPLOY_SERVER:$DEPLOY_PATH
           name: Deploy to remote server
       - run:
-          ssh $DEPLOY_USER@$DEPLOY_SERVER
+          command: |
+            ssh $DEPLOY_USER@$DEPLOY_SERVER
+            "npm install
+            "
+          name: Install dependencies
+      - run:
+          ssh $DEPLOY_USER@$DEPLOY_SERVER 
             "$DEPLOY_RESTART_COMMAND;
             "
+
 
