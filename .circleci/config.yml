@@ -6,16 +6,12 @@ orbs:
 jobs:
   build:
     docker:
-      # Service container image
-      - image: cimg/postgres:14.0
+      - image: node:18.12.0
+      - image: circleci/postgres:14.0
         environment:
-          POSTGRES_USER: postgres
-        auth:
-          username: mydockerhub-user
-          password: $POSTGRES_PASSWORD
-
-    executor: node/default
-    parallelism: 10
+          POSTGRES_USER: $POSTGRES_USER
+          POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+          POSTGRES_DB: $POSTGRES_DB
     steps:
       - checkout
       - add_ssh_keys
