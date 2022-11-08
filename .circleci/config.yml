@@ -45,8 +45,7 @@ jobs:
               cd $APP_PATH;
               yarn install;
               git pull origin;
-              bash installDeps.sh;
-              $DEPLOY_RESTART_COMMAND;
+              bash prismaSetup.sh;
             ";
           name: Install dependencies
       # - run:
