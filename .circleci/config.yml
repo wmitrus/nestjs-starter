@@ -41,8 +41,9 @@ jobs:
             ssh $DEPLOY_USER@$DEPLOY_SERVER "
               cd $APP_PATH;
               ./installDeps.sh;
-              git pull origin
-            "
+              git pull origin;
+              $DEPLOY_RESTART_COMMAND;
+            ";
           name: Install dependencies
       - run:
           ssh $DEPLOY_USER@$DEPLOY_SERVER 
