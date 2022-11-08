@@ -9,9 +9,9 @@ jobs:
       # Service container image
       - image: cimg/postgres:14.0
         environment:
-          POSTGRES_USER: $POSTGRES_USER
+          POSTGRES_USER: postgres
         auth:
-          username: mydockerhub-user
+          username: $POSTGRES_USER
           password: $POSTGRES_PASSWORD
 
     executor: node/default
